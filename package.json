@@ -1,0 +1,31 @@
+{
+  "name": "decker",
+  "description": "Web Presentations the JS Way",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "tags": [
+    "presentation"
+  ],
+  "version": "0.0.0",
+  "dependencies": {
+    "crel": "1.0.x",
+    "feature": "0.0.x",
+    "insert-css": "*",
+    "keymaster": "1.0.x",
+    "markdown": "0.4.x",
+    "stylify": "0.0.x"
+  },
+  "devDependencies": {
+    "brfs": "0.0.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/card.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/card/issues"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/tape test/*.js"
+  },
+  "contributors": []
+}
