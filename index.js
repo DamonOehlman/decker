@@ -3,10 +3,38 @@ var classtweak = require('classtweak'),
     insertCss = require('insert-css'),
     key = require('keymaster'),
     Stream = require('stream'),
-    md = require('markdown').markdown,
+    hljs = require('highlight.js'),
+    marked = require('marked'),
     util = require('util'),
     reSlideBreak = /\n\r?\-{2,}/m,
-    reLeadingAndTrailingSpaces = /^\s*(.*)\s*$/m;
+    reLeadingAndTrailingSpaces = /^\s*(.*)\s*$/m,
+    hljsLangMappings = {
+        js: 'javascript'
+    };
+
+module.exports = function(options) {
+    var opts = options || {};
+
+    return new Deck();
+};
+
+/* initialise marked */
+
+marked.setOptions({
+    highlight: function(code, lang) {
+        var lang = hljsLangMappings[lang] || lang;
+
+        // if this is a known hljs language then highlight
+        if (hljs.LANGUAGES[lang]) {
+            return hljs.highlight(lang, code).value
+        }
+        else {
+            return code;
+        }
+    }
+});
+
+/* Deck prototype */
 
 function Deck() {
     Stream.call(this);
@@ -38,7 +66,7 @@ Deck.prototype.add = function(slide) {
         // trim trailing line breaks and spaces
         slide = {
             type: 'html',
-            data: md.toHTML(slide.replace(reLeadingAndTrailingSpaces, '$1'))
+            data: marked(slide.replace(reLeadingAndTrailingSpaces, '$1'))
         }
     }
 
@@ -76,7 +104,7 @@ Deck.prototype.render = function(options) {
     this._elements = this.slides.map(createSlide);
 
     // set the index to 0 if not already defined
-    this.index = this.index || 0;
+    this.index = this.index || this.hashIndex || 0;
 
     // bind keys
     key('right, space, left', this._handleKey.bind(this));
@@ -131,13 +159,19 @@ Object.defineProperty(Deck.prototype, 'index', {
                 classtweak(this._elements.slice(0, value), '+decker-past');
                 classtweak(this._elements[value], '+decker-active');
                 this._index = value;
+
+                if (typeof window != 'undefined') {
+                    window.location.hash = value;
+                }
             }
         }
     }
 });
 
-module.exports = function(options) {
-    var opts = options || {};
-
-    return new Deck();
-};
+Object.defineProperty(Deck.prototype, 'hashIndex', {
+    get: function() {
+        if (typeof window != 'undefined') {
+            return parseInt(window.location.hash.slice(1), 10);
+        }
+    }
+});

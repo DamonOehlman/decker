@@ -10,9 +10,10 @@
     "classtweak": "0.1.x",
     "crel": "1.0.x",
     "feature": "0.0.x",
+    "highlight.js": "7.3.x",
     "insert-css": "*",
     "keymaster": "1.0.x",
-    "markdown": "0.4.x",
+    "marked": "0.2.x",
     "stylify": "0.0.x"
   },
   "devDependencies": {
