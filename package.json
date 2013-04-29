@@ -5,7 +5,7 @@
   "tags": [
     "presentation"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "classtweak": "0.1.x",
     "crel": "1.0.x",
