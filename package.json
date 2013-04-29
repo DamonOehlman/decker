@@ -7,6 +7,7 @@
   ],
   "version": "0.0.0",
   "dependencies": {
+    "classtweak": "0.1.x",
     "crel": "1.0.x",
     "feature": "0.0.x",
     "insert-css": "*",

@@ -1,5 +1,31 @@
-article {
+html, body, section {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+article.decker {
     section {
-        display: none;
+        position: absolute;
+        
+        padding: 5%;
+        width: 90%;
+        height: 90%;
+
+        top: 0;
+        left: 0;
+
+        -webkit-transform: translateX(100%) translateZ(0px);
+        -webkit-transition: all ease-in-out 0.5s;
+
+        &.decker-active {
+            -webkit-transform: translateX(0px) translateZ(0px);
+        }
+
+        &.decker-past {
+            -webkit-transform: translateX(-100%) translateZ(0px);
+        }
     }
 }

@@ -1,4 +1,5 @@
-var crel = require('crel'),
+var classtweak = require('classtweak'),
+    crel = require('crel'),
     insertCss = require('insert-css'),
     key = require('keymaster'),
     Stream = require('stream'),
@@ -13,11 +14,11 @@ function Deck() {
     // initialise the slides array
     this.slides = [];
 
+    // initialise the elements array that will contain the section elements
+    this._elements = [];
+
     // mark as writable
     this.writable = true;
-
-    // ensure we have the baseline css
-    insertCss(require('./assets/decker.styl'));
 }
 
 util.inherits(Deck, Stream);
@@ -50,7 +51,9 @@ Deck.prototype.add = function(slide) {
 
 Render a new slide deck as an HTML element ready for insertion into the DOM.
 */
-Deck.prototype.render = function() {
+Deck.prototype.render = function(options) {
+
+    var deck = this;
 
     function createSlide(slide, index) {
         var section;
@@ -69,9 +72,20 @@ Deck.prototype.render = function() {
         return section;
     }
 
-    console.log(window);
+    // create the dom elements
+    this._elements = this.slides.map(createSlide);
 
-    return crel.apply(null, ['article'].concat(this.slides.map(createSlide)));
+    // set the index to 0 if not already defined
+    this.index = this.index || 0;
+
+    // bind keys
+    key('right, space, left', this._handleKey.bind(this));
+
+    // ensure we have the baseline css
+    insertCss(require('./assets/decker.styl'));
+
+    // create the container article
+    return crel.apply(null, ['article', { class: 'decker '}].concat(this._elements));
 };
 
 /**
@@ -81,6 +95,49 @@ Deck.prototype.write = function(data) {
     // apply the action from the deck
 };
 
-module.exports = function() {
+/**
+## _handleKey(evt, handler)
+
+Handle key events as per [keymaster](https://github.com/madrobby/keymaster) docs.
+*/
+Deck.prototype._handleKey = function(evt, handler) {
+    switch (handler.shortcut) {
+        case 'left': 
+            this.index -= 1;
+            break;
+
+        default:
+            this.index += 1;
+    }
+}
+
+/* deck properties */
+
+Object.defineProperty(Deck.prototype, 'index', {
+    get: function() {
+        return this._index;
+    },
+
+    set: function(value) {
+        // constrain the value to within valid bounds
+        value = this._elements.length ? Math.max(0, Math.min(parseInt(value, 10), this._elements.length - 1)) : -1;
+
+        if (this._index !== value) {
+            // unset active for the articles
+            classtweak(this._elements, '-decker-active -decker-past');
+
+            // set the current section to active
+            if (value >= 0) {
+                classtweak(this._elements.slice(0, value), '+decker-past');
+                classtweak(this._elements[value], '+decker-active');
+                this._index = value;
+            }
+        }
+    }
+});
+
+module.exports = function(options) {
+    var opts = options || {};
+
     return new Deck();
 };
