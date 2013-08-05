@@ -21,13 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DamonOehlman/card.git"
+    "url": "git://github.com/DamonOehlman/decker.git"
   },
   "bugs": {
-    "url": "http://github.com/DamonOehlman/card/issues"
+    "url": "http://github.com/DamonOehlman/decker/issues"
   },
   "scripts": {
-    "test": "./node_modules/.bin/tape test/*.js"
+    "start": "beefy demo.js -- -t brfs -t stylify"
   },
   "contributors": []
 }
