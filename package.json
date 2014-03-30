@@ -8,16 +8,16 @@
   "version": "0.0.3",
   "dependencies": {
     "classtweak": "0.1.x",
-    "crel": "1.0.x",
-    "feature": "0.0.x",
-    "highlight.js": "7.3.x",
+    "crel": "^1.1.1",
+    "feature": "^0.1.4",
+    "highlight.js": "^8.0.0",
     "insert-css": "*",
     "keymaster": "1.0.x",
-    "marked": "0.2.x",
-    "stylify": "0.0.x"
+    "marked": "^0.3.2",
+    "stylify": "^0.1.2"
   },
   "devDependencies": {
-    "brfs": "0.0.x"
+    "brfs": "^1.0.0"
   },
   "repository": {
     "type": "git",
