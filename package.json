@@ -12,7 +12,6 @@
     "feature": "^0.1.4",
     "highlight.js": "^8.0.0",
     "insert-css": "*",
-    "keymaster": "1.0.x",
     "marked": "^0.3.2",
     "stylify": "^0.1.2"
   },
