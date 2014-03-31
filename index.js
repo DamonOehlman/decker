@@ -24,7 +24,6 @@
 var classtweak = require('classtweak');
 var crel = require('crel');
 var insertCss = require('insert-css');
-var key = require('keymaster');
 var Stream = require('stream');
 var hljs = require('highlight.js');
 var marked = require('marked');
@@ -45,10 +44,10 @@ module.exports = function(options) {
 
 marked.setOptions({
   highlight: function(code, lang) {
-    lang = hljsLangMappings[lang] || lang;
+    // lang = hljsLangMappings[lang] || lang;
 
     // if this is a known hljs language then highlight
-    if (hljs.LANGUAGES[lang]) {
+    if (hljs.getLanguage(lang)) {
       return hljs.highlight(lang, code).value;
     }
     else {
@@ -121,7 +120,9 @@ Deck.prototype.render = function() {
     }
 
     // set the data attributes
-    section.dataset.index = index;
+    if (section) {
+      section.dataset.index = index;
+    }
 
     return section;
   }
@@ -133,7 +134,7 @@ Deck.prototype.render = function() {
   this.index = this.index || this.hashIndex || 0;
 
   // bind keys
-  key('right, space, left', this._handleKey.bind(this));
+  document.body.addEventListener('keydown', this._handleKey.bind(this));
 
   // ensure we have the baseline css
   insertCss(require('./assets/decker.styl'));
@@ -158,15 +159,17 @@ Deck.prototype.write = function() {
   Handle key events as per
   [keymaster](https://github.com/madrobby/keymaster) docs.
 **/
-Deck.prototype._handleKey = function(evt, handler) {
-  switch (handler.shortcut) {
-  case 'left':
-    this.index -= 1;
-    break;
+Deck.prototype._handleKey = function(evt) {
+  var increment = 0;
 
-  default:
-    this.index += 1;
+  if (evt.keyCode === 32 || evt.keyCode === 39) {
+    increment = 1;
   }
+  else if (evt.keyCode ===  37) {
+    increment = -1;
+  }
+
+  this.index += increment;
 };
 
 /* deck properties */
