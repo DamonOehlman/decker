@@ -26,6 +26,7 @@
     "url": "https://github.com/DamonOehlman/decker/issues"
   },
   "scripts": {
-    "start": "beefy demo.js -- -t stylify -t brfs"
+    "start": "beefy demo.js -- -t stylify -t brfs",
+    "gendocs": "gendocs > README.md"
   }
 }
