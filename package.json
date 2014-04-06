@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/DamonOehlman/decker.git"
+    "url": "https://github.com/DamonOehlman/decker.git"
   },
   "bugs": {
-    "url": "https://bitbucket.org/DamonOehlman/decker/issues"
+    "url": "https://github.com/DamonOehlman/decker/issues"
   },
   "scripts": {
     "start": "beefy demo.js -- -t brfs -t stylify"
