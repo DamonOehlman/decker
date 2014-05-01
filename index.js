@@ -13,7 +13,7 @@
   ## Why Decker?
 
   Because if you are talking about Browserify, then using presentation
-  software built another way feels kind of wrong :/ 
+  software built another way feels kind of wrong :/
 
 **/
 
