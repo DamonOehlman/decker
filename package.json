@@ -13,10 +13,11 @@
     "highlight.js": "^8.0.0",
     "insert-css": "*",
     "marked": "^0.3.2",
-    "stylify": "^0.1.2"
+    "stylify": "^0.1.2",
+    "brfs": "^1"
   },
-  "devDependencies": {
-    "brfs": "^1.0.0"
+  "browserify": {
+    "transform": [ "stylify", "brfs" ]
   },
   "repository": {
     "type": "git",
