@@ -5,7 +5,7 @@
   "tags": [
     "presentation"
   ],
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "classtweak": "0.1.x",
     "crel": "^1.1.1",
@@ -17,7 +17,10 @@
     "brfs": "^1"
   },
   "browserify": {
-    "transform": [ "stylify", "brfs" ]
+    "transform": [
+      "stylify",
+      "brfs"
+    ]
   },
   "repository": {
     "type": "git",
