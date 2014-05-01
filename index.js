@@ -24,6 +24,7 @@ var Stream = require('stream');
 var hljs = require('highlight.js');
 var marked = require('marked');
 var util = require('util');
+var fs = require('fs');
 
 var reSlideBreak = /\n\r?\-{2,}/m;
 var reLeadingAndTrailingSpaces = /^\s*(.*)\s*$/m;
@@ -133,7 +134,7 @@ Deck.prototype.render = function() {
   document.body.addEventListener('keydown', this._handleKey.bind(this));
 
   // ensure we have the baseline css
-  insertCss(require('./assets/decker.styl'));
+  insertCss(fs.readFileSync(__dirname + '/assets/decker.css'));
 
   // create the container article
   return crel.apply(

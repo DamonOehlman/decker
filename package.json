@@ -13,12 +13,10 @@
     "highlight.js": "^8.0.0",
     "insert-css": "*",
     "marked": "^0.3.2",
-    "stylify": "^0.1.2",
     "brfs": "^1"
   },
   "browserify": {
     "transform": [
-      "stylify",
       "brfs"
     ]
   },
@@ -30,7 +28,7 @@
     "url": "https://github.com/DamonOehlman/decker/issues"
   },
   "scripts": {
-    "start": "beefy demo.js -- -t stylify -t brfs",
+    "start": "beefy demo.js",
     "gendocs": "gendocs > README.md"
   },
   "homepage": "https://github.com/DamonOehlman/decker",
