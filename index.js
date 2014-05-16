@@ -41,7 +41,7 @@ module.exports = function(options) {
 
 marked.setOptions({
   highlight: function(code, lang) {
-    // lang = hljsLangMappings[lang] || lang;
+    lang = hljsLangMappings[lang] || lang;
 
     // if this is a known hljs language then highlight
     if (hljs.getLanguage(lang)) {
