@@ -134,7 +134,7 @@ Deck.prototype.render = function() {
   document.body.addEventListener('keydown', this._handleKey.bind(this));
 
   // ensure we have the baseline css
-  insertCss(fs.readFileSync(__dirname + '/assets/decker.css'));
+  insertCss(fs.readFileSync(__dirname + '/assets/decker.css', 'utf8'));
 
   // create the container article
   return crel.apply(
