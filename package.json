@@ -5,7 +5,7 @@
   "tags": [
     "presentation"
   ],
-  "version": "0.1.3",
+  "version": "0.2.0",
   "dependencies": {
     "brfs": "^1.4.3",
     "classtweak": "0.1.x",
