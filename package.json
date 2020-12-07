@@ -11,7 +11,7 @@
     "classtweak": "0.1.x",
     "crel": "^3.0.0",
     "feature": "^1.0.1",
-    "highlight.js": "^9.8.0",
+    "highlight.js": "^10.4.1",
     "insert-css": "^2.0.0",
     "marked": "^0.3.2"
   },
